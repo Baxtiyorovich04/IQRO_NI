@@ -1,0 +1,94 @@
+:root {
+  --green: #00762d;
+  --green-dark: #06702f;
+  --green-tint: #EAFBF1;
+  --green-border: #CFEFDD;
+  --ink: #0B1F16;
+  --muted: #6B7280;
+  --white: #FFFFFF;
+  --radius-lg: 20px;
+  --radius-md: 14px;
+  --radius-sm: 10px;
+  --font-display: 'Michroma', sans-serif;
+  --font-body: 'Inter', sans-serif;
+}
+
+* { box-sizing: border-box; }
+
+html, body, #root {
+  margin: 0;
+  padding: 0;
+  min-height: 100%;
+  background: var(--white);
+  color: var(--ink);
+}
+
+body {
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+}
+
+button {
+  font-family: var(--font-body);
+  cursor: pointer;
+}
+
+button:focus-visible,
+input:focus-visible,
+a:focus-visible {
+  outline: 2px solid var(--green-dark);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+
+.app-shell {
+  max-width: 480px;
+  margin: 0 auto;
+  min-height: 100vh;
+  background: var(--white);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.logo-word {
+  font-family: var(--font-display);
+  letter-spacing: 0.04em;
+}
+
+input {
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+input:focus {
+  outline: none;
+  border-color: var(--green) !important;
+  box-shadow: 0 0 0 4px rgba(0, 192, 75, 0.14);
+  background: #fff !important;
+}
+
+button {
+  transition: transform 0.15s ease, opacity 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+button:active {
+  transform: scale(0.97);
+}
+
+::selection {
+  background: var(--green);
+  color: #fff;
+}
+
+.leaflet-container {
+  font-family: var(--font-body) !important;
+}
+.leaflet-control-attribution {
+  font-size: 9px !important;
+  background: rgba(255,255,255,0.75) !important;
+}
