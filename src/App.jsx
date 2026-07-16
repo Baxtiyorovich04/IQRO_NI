@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
-import { MdDashboard, MdSettings, MdAccountBalanceWallet, MdMenu } from 'react-icons/md';
+import { MdDashboard, MdSettings, MdAccountBalanceWallet, MdMenu, MdLogout } from 'react-icons/md';
 import Splash from './screens/Splash.jsx';
 import Auth from './screens/Auth.jsx';
 import Profile from './screens/Profile.jsx';
@@ -171,7 +171,14 @@ export default function App() {
                   ))}
                 </nav>
                 <div style={styles.sidebarFooter}>
-                  <button style={styles.logoutBtn} onClick={handleLogout}>{t(locale, 'sidebar.logout')}</button>
+                  <button
+                    style={styles.logoutBtn}
+                    onClick={handleLogout}
+                    title={t(locale, 'sidebar.logout')}
+                  >
+                    <MdLogout size={18} />
+                    <span style={{ display: sidebarOpen ? 'inline' : 'none' }}>{t(locale, 'sidebar.logout')}</span>
+                  </button>
                 </div>
               </motion.aside>
 
@@ -247,7 +254,12 @@ const styles = {
     background: 'var(--green-tint)', color: 'var(--green-dark)', transform: 'scale(1.03)',
   },
   sidebarIcon: { display: 'flex', alignItems: 'center', justifyContent: 'center' },
-  sidebarFooter: { marginTop: 'auto' },
+  sidebarFooter: { marginTop: 'auto', display: 'flex', justifyContent: 'center' },
+  logoutBtn: {
+    width: '100%', border: 'none', borderRadius: 14, padding: '12px 14px',
+    display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8,
+    background: 'var(--green)', color: '#fff', fontWeight: 700, cursor: 'pointer', transition: 'transform 0.2s ease',
+  },
   pageContainer: { flex: 1, display: 'flex', flexDirection: 'column' },
   pageHeader: { display: 'flex', alignItems: 'center', gap: 12, paddingBottom: 12, borderBottom: '1px solid var(--green-border)', marginBottom: 14 },
   menuToggle: {

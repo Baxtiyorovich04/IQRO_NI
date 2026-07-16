@@ -47,9 +47,9 @@ export default function Faq({ items, locale }) {
 const styles = {
   heading: { fontSize: 15, fontWeight: 700, margin: '0 0 10px' },
   list: { display: 'flex', flexDirection: 'column', gap: 8 },
-  item: { border: '1px solid var(--green-border)', borderRadius: 'var(--radius-sm)', overflow: 'hidden', transition: 'border-color 0.25s' },
+  item: { border: '1px solid var(--green-border)', borderRadius: 'var(--radius-sm)', overflow: 'hidden', transition: 'border-color 0.25s', background: 'var(--surface)' },
   q: {
-    width: '100%', background: '#fff', border: 'none', padding: '13px 14px', textAlign: 'left',
+    width: '100%', background: 'var(--surface)', border: 'none', padding: '13px 14px', textAlign: 'left',
     display: 'flex', alignItems: 'center', justifyContent: 'space-between', fontSize: 13.5, fontWeight: 600,
     color: 'var(--ink)',
   },

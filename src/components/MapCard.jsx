@@ -19,6 +19,10 @@ const pulseIcon = L.divIcon({
 
 export default function MapCard({ machine, locale }) {
   const { lat, lon } = machine;
+  const isDarkMode = document.documentElement.dataset.theme === 'dark';
+  const tileUrl = isDarkMode
+    ? 'https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png'
+    : 'https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png';
   const bigMapUrl = `https://www.openstreetmap.org/?mlat=${lat}&mlon=${lon}#map=17/${lat}/${lon}`;
 
   return (
@@ -41,7 +45,7 @@ export default function MapCard({ machine, locale }) {
         >
           <TileLayer
             attribution='&copy; OpenStreetMap &copy; CARTO'
-            url="https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png"
+            url={tileUrl}
             subdomains={['a', 'b', 'c', 'd']}
           />
           <Marker position={[lat, lon]} icon={pulseIcon}>
@@ -71,12 +75,12 @@ const styles = {
   card: {
     display: 'block', borderRadius: 'var(--radius-md)', overflow: 'hidden',
     border: '1px solid var(--green-border)', textDecoration: 'none', color: 'var(--ink)',
-    background: '#fff', boxShadow: '0 1px 2px rgba(11,31,22,0.04)',
+    background: 'var(--surface)', boxShadow: '0 1px 2px rgba(0,0,0,0.12)',
   },
   mapWrap: { position: 'relative', height: 128, background: 'var(--green-tint)' },
   map: { width: '100%', height: '100%', zIndex: 0 },
   openBtn: {
-    position: 'absolute', bottom: 8, right: 8, background: 'rgba(255,255,255,0.92)',
+    position: 'absolute', bottom: 8, right: 8, background: 'var(--surface)',
     color: 'var(--green-dark)', fontSize: 10, fontWeight: 700, padding: '4px 8px',
     borderRadius: 20, textDecoration: 'none', boxShadow: '0 1px 4px rgba(0,0,0,0.12)', zIndex: 1,
   },

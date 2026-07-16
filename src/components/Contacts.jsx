@@ -31,7 +31,7 @@ function Row({ label, value, last }) {
 
 const styles = {
   heading: { fontSize: 15, fontWeight: 700, margin: '0 0 10px' },
-  card: { border: '1px solid var(--green-border)', borderRadius: 'var(--radius-md)', overflow: 'hidden' },
+  card: { border: '1px solid var(--green-border)', borderRadius: 'var(--radius-md)', overflow: 'hidden', background: 'var(--surface)' },
   row: { display: 'flex', justifyContent: 'space-between', gap: 12, padding: '12px 14px', fontSize: 13 },
   rowLabel: { color: 'var(--muted)' },
   rowValue: { fontWeight: 600, textAlign: 'right' },
