@@ -8,6 +8,8 @@ import ScanCard from '../components/ScanCard.jsx';
 import Faq from '../components/Faq.jsx';
 import Contacts from '../components/Contacts.jsx';
 
+import { t } from '../i18n.js';
+
 const container = {
   hidden: {},
   show: { transition: { staggerChildren: 0.08, delayChildren: 0.05 } },
@@ -17,7 +19,7 @@ const item = {
   show: { opacity: 1, y: 0, transition: { duration: 0.4, ease: [0.22, 1, 0.36, 1] } },
 };
 
-export default function Main({ profile, onLogout }) {
+export default function Main({ profile, locale, onLogout }) {
   const [showHistory, setShowHistory] = useState(false);
   const [toast, setToast] = useState(null);
 
@@ -25,10 +27,11 @@ export default function Main({ profile, onLogout }) {
     ...db.user,
     firstName: profile?.firstName || db.user.firstName,
     lastName: profile?.lastName || db.user.lastName,
+    phone: profile?.phone || db.user.phone,
   };
 
   const handleScanSuccess = () => {
-    setToast('Книга «Дюна» выдана из ячейки A1');
+    setToast(t(locale, 'main.toastRentSuccess'));
     setTimeout(() => setToast(null), 3000);
   };
 
@@ -36,29 +39,29 @@ export default function Main({ profile, onLogout }) {
     <motion.div style={styles.wrap} variants={container} initial="hidden" animate="show">
       <motion.div variants={item} style={styles.topBar}>
         <span className="logo-word" style={styles.logo}>IQRO NI</span>
-        <button style={styles.logoutBtn} onClick={onLogout}>Выйти</button>
+        <button style={styles.logoutBtn} onClick={onLogout}>{t(locale, 'main.logout')}</button>
       </motion.div>
 
       <motion.div variants={item}>
-        <StatsBar user={user} onBooksClick={() => setShowHistory(true)} />
+        <StatsBar user={user} locale={locale} onBooksClick={() => setShowHistory(true)} />
       </motion.div>
 
       <motion.div variants={item} style={styles.grid}>
-        <MapCard machine={db.machine} />
-        <ScanCard onScanSuccess={handleScanSuccess} />
+        <MapCard machine={db.machine} locale={locale} style={styles.mapCard} />
+        <ScanCard onScanSuccess={handleScanSuccess} locale={locale} />
       </motion.div>
 
       <motion.div variants={item} style={styles.section}>
-        <Faq items={db.faq} />
+        <Faq items={t(locale, 'faq.items')} locale={locale} />
       </motion.div>
 
       <motion.div variants={item} style={styles.section}>
-        <Contacts contacts={db.contacts} machine={db.machine} />
+        <Contacts contacts={db.contacts} machine={db.machine} locale={locale} />
       </motion.div>
 
       <AnimatePresence>
         {showHistory && (
-          <RentalHistoryModal rentals={db.rentals} onClose={() => setShowHistory(false)} />
+          <RentalHistoryModal rentals={db.rentals} locale={locale} onClose={() => setShowHistory(false)} />
         )}
       </AnimatePresence>
 

@@ -1,7 +1,8 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { t } from '../i18n.js';
 
-export default function StatsBar({ user, onBooksClick }) {
+export default function StatsBar({ user, locale, onBooksClick }) {
   return (
     <div style={styles.card}>
       <div style={styles.nameRow}>
@@ -15,9 +16,9 @@ export default function StatsBar({ user, onBooksClick }) {
       <div style={styles.statsRow}>
         <div style={styles.statBlock}>
           <div className="logo-word" style={styles.statValue}>
-            {user.balance.toLocaleString('ru-RU')}
+            {user.balance.toLocaleString(locale === 'en' ? 'en-US' : 'ru-RU')}
           </div>
-          <div style={styles.statLabel}>баланс, {user.currency}</div>
+          <div style={styles.statLabel}>{t(locale, 'main.balance', { currency: user.currency })}</div>
         </div>
 
         <div style={styles.divider} />
@@ -29,7 +30,7 @@ export default function StatsBar({ user, onBooksClick }) {
           whileHover={{ background: 'rgba(255,255,255,0.08)' }}
         >
           <div className="logo-word" style={styles.statValue}>{user.booksInUse}</div>
-          <div style={styles.statLabel}>книг в аренде ›</div>
+          <div style={styles.statLabel}>{t(locale, 'main.books')}</div>
         </motion.button>
       </div>
     </div>

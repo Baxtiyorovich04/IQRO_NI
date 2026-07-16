@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
+import { t } from '../i18n.js';
 
-export default function Profile({ onDone }) {
+export default function Profile({ locale, onDone }) {
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
 
@@ -26,8 +27,8 @@ export default function Profile({ onDone }) {
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.1, duration: 0.4 }}
       >
-        <h1 style={styles.title}>Как к вам обращаться?</h1>
-        <p style={styles.subtitle}>Это понадобится для выдачи книг в аппаратах</p>
+        <h1 style={styles.title}>{t(locale, 'profile.title')}</h1>
+        <p style={styles.subtitle}>{t(locale, 'profile.subtitle')}</p>
       </motion.div>
 
       <motion.div
@@ -36,21 +37,21 @@ export default function Profile({ onDone }) {
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.18, duration: 0.4 }}
       >
-        <label style={styles.label}>Имя</label>
+        <label style={styles.label}>{t(locale, 'profile.firstName')}</label>
         <input
           style={styles.input}
           value={firstName}
           onChange={(e) => setFirstName(e.target.value)}
-          placeholder="Марк"
+          placeholder={t(locale, 'profile.firstNamePlaceholder')}
           autoFocus
         />
 
-        <label style={styles.label}>Фамилия</label>
+        <label style={styles.label}>{t(locale, 'profile.lastName')}</label>
         <input
           style={styles.input}
           value={lastName}
           onChange={(e) => setLastName(e.target.value)}
-          placeholder="Азаматов"
+          placeholder={t(locale, 'profile.lastNamePlaceholder')}
           onKeyDown={(e) => e.key === 'Enter' && submit()}
         />
 
@@ -60,7 +61,7 @@ export default function Profile({ onDone }) {
           onClick={submit}
           disabled={!canContinue}
         >
-          Продолжить
+          {t(locale, 'profile.continue')}
         </motion.button>
       </motion.div>
     </motion.div>

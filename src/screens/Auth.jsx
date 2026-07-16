@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { t, formatPhone } from '../i18n.js';
 
-export default function Auth({ onSuccess }) {
+export default function Auth({ locale, onSuccess }) {
   const [phone, setPhone] = useState('+998 ');
   const [step, setStep] = useState('phone'); // phone | code
   const [demoCode, setDemoCode] = useState(null);
@@ -11,7 +12,7 @@ export default function Auth({ onSuccess }) {
   const sendCode = () => {
     const digits = phone.replace(/\D/g, '');
     if (digits.length < 12) {
-      setError('Введите номер полностью');
+      setError(t(locale, 'auth.invalidNumber'));
       return;
     }
     setError('');
@@ -24,7 +25,7 @@ export default function Auth({ onSuccess }) {
     if (code === demoCode) {
       onSuccess(phone);
     } else {
-      setError('Неверный код, попробуйте ещё раз');
+      setError(t(locale, 'auth.wrongCode'));
     }
   };
 
@@ -41,22 +42,22 @@ export default function Auth({ onSuccess }) {
             exit={{ opacity: 0, x: -12 }}
             transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
           >
-            <h1 style={styles.title}>Вход по номеру телефона</h1>
-            <p style={styles.subtitle}>Пришлём код подтверждения</p>
+            <h1 style={styles.title}>{t(locale, 'auth.titlePhone')}</h1>
+            <p style={styles.subtitle}>{t(locale, 'auth.subtitlePhone')}</p>
 
-            <label style={styles.label}>Номер телефона</label>
+            <label style={styles.label}>{t(locale, 'auth.phoneLabel')}</label>
             <input
               style={styles.input}
-              value={phone}
+              value={formatPhone(phone)}
               onChange={(e) => setPhone(e.target.value)}
-              placeholder="+998 90 123 45 67"
+              placeholder={t(locale, 'auth.placeholderPhone')}
               inputMode="tel"
               autoFocus
             />
             {error && <div style={styles.error}>{error}</div>}
 
             <motion.button style={styles.primaryBtn} whileTap={{ scale: 0.97 }} onClick={sendCode}>
-              Получить код
+              {t(locale, 'auth.getCode')}
             </motion.button>
           </motion.div>
         )}
@@ -69,19 +70,19 @@ export default function Auth({ onSuccess }) {
             exit={{ opacity: 0, x: -12 }}
             transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
           >
-            <h1 style={styles.title}>Введите код</h1>
-            <p style={styles.subtitle}>Отправлен на {phone}</p>
+            <h1 style={styles.title}>{t(locale, 'auth.titleCode')}</h1>
+            <p style={styles.subtitle}>{t(locale, 'auth.subtitleCode', { phone })}</p>
 
             <div style={styles.demoBanner}>
-              Демо-режим (нет SMS-провайдера): ваш код — <b>{demoCode}</b>
+              {t(locale, 'auth.demoMode', { code: demoCode })}
             </div>
 
-            <label style={styles.label}>Код из 4 цифр</label>
+            <label style={styles.label}>{t(locale, 'auth.codeLabel')}</label>
             <input
               style={{ ...styles.input, letterSpacing: '0.5em', fontSize: 20, textAlign: 'center' }}
               value={code}
               onChange={(e) => setCode(e.target.value.replace(/\D/g, '').slice(0, 4))}
-              placeholder="0000"
+              placeholder={t(locale, 'auth.codeHint')}
               inputMode="numeric"
               autoFocus
               onKeyDown={(e) => e.key === 'Enter' && verifyCode()}
@@ -94,10 +95,10 @@ export default function Auth({ onSuccess }) {
               onClick={verifyCode}
               disabled={code.length < 4}
             >
-              Подтвердить
+              {t(locale, 'auth.verify')}
             </motion.button>
             <button style={styles.linkBtn} onClick={() => { setStep('phone'); setCode(''); setError(''); }}>
-              Изменить номер
+              {t(locale, 'auth.changeNumber')}
             </button>
           </motion.div>
         )}

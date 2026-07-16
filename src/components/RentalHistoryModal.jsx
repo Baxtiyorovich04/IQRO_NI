@@ -1,12 +1,14 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { t } from '../i18n.js';
 
-function formatDate(iso) {
+function formatDate(iso, locale) {
   const d = new Date(iso);
-  return d.toLocaleString('ru-RU', { day: '2-digit', month: 'short', hour: '2-digit', minute: '2-digit' });
+  const formatLocale = locale === 'en' ? 'en-US' : locale === 'uz' ? 'uz-UZ' : 'ru-RU';
+  return d.toLocaleString(formatLocale, { day: '2-digit', month: 'short', hour: '2-digit', minute: '2-digit' });
 }
 
-export default function RentalHistoryModal({ rentals, onClose }) {
+export default function RentalHistoryModal({ rentals, locale, onClose }) {
   return (
     <motion.div
       style={styles.overlay}
@@ -26,7 +28,7 @@ export default function RentalHistoryModal({ rentals, onClose }) {
       >
         <div style={styles.handle} />
         <div style={styles.header}>
-          <h2 style={styles.title}>Мои книги</h2>
+          <h2 style={styles.title}>{t(locale, 'main.myBooks')}</h2>
           <button style={styles.closeBtn} onClick={onClose}>✕</button>
         </div>
 
@@ -46,14 +48,14 @@ export default function RentalHistoryModal({ rentals, onClose }) {
                   background: r.status === 'active' ? 'var(--green-tint)' : '#F1F2F4',
                   color: r.status === 'active' ? 'var(--green-dark)' : 'var(--muted)',
                 }}>
-                  {r.status === 'active' ? 'в аренде' : 'возвращена'}
+                  {r.status === 'active' ? t(locale, 'main.active') : t(locale, 'main.returned')}
                 </span>
               </div>
               <div style={styles.author}>{r.author}</div>
-              <div style={styles.meta}>Взята: {formatDate(r.takenAt)}</div>
+              <div style={styles.meta}>{t(locale, 'main.takenAt')} {formatDate(r.takenAt, locale)}</div>
               {r.status === 'active'
-                ? <div style={styles.meta}>Вернуть до: {formatDate(r.dueAt)}</div>
-                : <div style={styles.meta}>Возвращена: {formatDate(r.returnedAt)}</div>}
+                ? <div style={styles.meta}>{t(locale, 'main.returnBy')} {formatDate(r.dueAt, locale)}</div>
+                : <div style={styles.meta}>{t(locale, 'main.returnedAt')} {formatDate(r.returnedAt, locale)}</div>}
               <div style={styles.meta}>{r.location}</div>
             </motion.div>
           ))}

@@ -1,19 +1,20 @@
 import React from 'react';
+import { t } from '../i18n.js';
 
-export default function Contacts({ contacts, machine }) {
+export default function Contacts({ contacts, machine, locale }) {
   return (
     <div>
-      <h3 style={styles.heading}>Контакты</h3>
+      <h3 style={styles.heading}>{t(locale, 'main.contacts')}</h3>
       <div style={styles.card}>
-        <Row label="Адрес" value={machine.address} />
-        <Row label="Телефон" value={contacts.phone} />
-        <Row label="Email" value={contacts.email} />
-        <Row label="Telegram" value={contacts.telegram} />
-        <Row label="Instagram" value={contacts.instagram} last />
+        <Row label={t(locale, 'main.address')} value={machine.address} />
+        <Row label={t(locale, 'main.phone')} value={contacts.phone} />
+        <Row label={t(locale, 'main.email')} value={contacts.email} />
+        <Row label={t(locale, 'main.telegram')} value={contacts.telegram} />
+        <Row label={t(locale, 'main.instagram')} value={contacts.instagram} last />
       </div>
       <div style={styles.footer}>
         <span className="logo-word" style={styles.footerLogo}>IQRO NI</span>
-        <span style={styles.footerText}>© 2026 · книги в аренду · Tashkent</span>
+        <span style={styles.footerText}>{t(locale, 'main.contactsFooter')}</span>
       </div>
     </div>
   );

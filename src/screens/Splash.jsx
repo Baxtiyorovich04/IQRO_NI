@@ -1,6 +1,7 @@
 import React from 'react';
+import { t } from '../i18n.js';
 
-export default function Splash() {
+export default function Splash({ locale }) {
   return (
     <div style={styles.wrap}>
       <div style={styles.markWrap}>
@@ -11,7 +12,7 @@ export default function Splash() {
         </div>
       </div>
       <div className="logo-word" style={styles.logo}>IQRO NI</div>
-      <div style={styles.tagline}>книги в аренду · рядом с тобой</div>
+      <div style={styles.tagline}>{t(locale, 'splash.tagline')}</div>
       <div style={styles.dots}>
         <span style={{ ...styles.dot, animationDelay: '0s' }} />
         <span style={{ ...styles.dot, animationDelay: '0.15s' }} />

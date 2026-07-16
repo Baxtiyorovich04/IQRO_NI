@@ -3,6 +3,7 @@ import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import { motion } from 'framer-motion';
+import { t } from '../i18n.js';
 
 const pulseIcon = L.divIcon({
   className: 'iqro-marker',
@@ -16,7 +17,7 @@ const pulseIcon = L.divIcon({
   iconAnchor: [11, 11],
 });
 
-export default function MapCard({ machine }) {
+export default function MapCard({ machine, locale }) {
   const { lat, lon } = machine;
   const bigMapUrl = `https://www.openstreetmap.org/?mlat=${lat}&mlon=${lon}#map=17/${lat}/${lon}`;
 
@@ -48,7 +49,7 @@ export default function MapCard({ machine }) {
           </Marker>
         </MapContainer>
         <a href={bigMapUrl} target="_blank" rel="noreferrer" style={styles.openBtn}>
-          Открыть карту ↗
+          {t(locale, 'main.openMap')}
         </a>
       </div>
       <div style={styles.label}>
@@ -73,11 +74,11 @@ const styles = {
     background: '#fff', boxShadow: '0 1px 2px rgba(11,31,22,0.04)',
   },
   mapWrap: { position: 'relative', height: 128, background: 'var(--green-tint)' },
-  map: { width: '100%', height: '100%' },
+  map: { width: '100%', height: '100%', zIndex: 0 },
   openBtn: {
     position: 'absolute', bottom: 8, right: 8, background: 'rgba(255,255,255,0.92)',
     color: 'var(--green-dark)', fontSize: 10, fontWeight: 700, padding: '4px 8px',
-    borderRadius: 20, textDecoration: 'none', boxShadow: '0 1px 4px rgba(0,0,0,0.12)', zIndex: 400,
+    borderRadius: 20, textDecoration: 'none', boxShadow: '0 1px 4px rgba(0,0,0,0.12)', zIndex: 1,
   },
   label: { display: 'flex', alignItems: 'center', gap: 6, padding: '10px 12px', fontSize: 12, fontWeight: 600 },
   dot: { width: 7, height: 7, borderRadius: '50%', background: 'var(--green)' },

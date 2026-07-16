@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { t } from '../i18n.js';
 
-export default function Faq({ items }) {
+export default function Faq({ items, locale }) {
   const [openIndex, setOpenIndex] = useState(null);
 
   return (
     <div>
-      <h3 style={styles.heading}>FAQ</h3>
+      <h3 style={styles.heading}>{t(locale, 'faq.heading')}</h3>
       <div style={styles.list}>
         {items.map((item, i) => {
           const isOpen = openIndex === i;

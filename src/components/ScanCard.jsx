@@ -1,8 +1,10 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { t } from '../i18n.js';
 
-export default function ScanCard({ onScanSuccess }) {
+export default function ScanCard({ onScanSuccess, locale }) {
   const [open, setOpen] = useState(false);
+  const [permissionError, setPermissionError] = useState(false);
 
   return (
     <>
@@ -20,11 +22,11 @@ export default function ScanCard({ onScanSuccess }) {
           <div style={styles.corner('br')} />
           <div style={styles.scanLine} />
         </div>
-        <div style={styles.label}>Сканировать QR</div>
+        <div style={styles.label}>{t(locale, 'main.scanQR')}</div>
       </motion.button>
 
       <AnimatePresence>
-        {open && <ScannerModal onClose={() => setOpen(false)} onScanSuccess={onScanSuccess} />}
+        {open && <ScannerModal onClose={() => setOpen(false)} onScanSuccess={onScanSuccess} locale={locale} />}
       </AnimatePresence>
 
       <style>{`
@@ -38,21 +40,31 @@ export default function ScanCard({ onScanSuccess }) {
   );
 }
 
-function ScannerModal({ onClose, onScanSuccess }) {
+function ScannerModal({ onClose, onScanSuccess, locale }) {
   const videoRef = useRef(null);
   const [status, setStatus] = useState('starting'); // starting | live | denied | success
   const [stream, setStream] = useState(null);
 
   useEffect(() => {
     let active = true;
-    navigator.mediaDevices?.getUserMedia?.({ video: { facingMode: 'environment' } })
-      .then((s) => {
-        if (!active) return;
+    const startCamera = async () => {
+      try {
+        const s = await navigator.mediaDevices.getUserMedia({ video: { facingMode: 'environment' } });
+        if (!active) {
+          s.getTracks().forEach((track) => track.stop());
+          return;
+        }
         setStream(s);
         setStatus('live');
-        if (videoRef.current) videoRef.current.srcObject = s;
-      })
-      .catch(() => active && setStatus('denied'));
+      } catch (error) {
+        if (active) {
+          setPermissionError(true);
+          setStatus('denied');
+        }
+      }
+    };
+
+    startCamera();
 
     return () => {
       active = false;
@@ -60,6 +72,14 @@ function ScannerModal({ onClose, onScanSuccess }) {
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  useEffect(() => {
+    if (stream && videoRef.current) {
+      videoRef.current.srcObject = stream;
+      const playPromise = videoRef.current.play?.();
+      if (playPromise?.catch) playPromise.catch(() => { });
+    }
+  }, [stream]);
 
   const simulateScan = () => {
     setStatus('success');
@@ -92,17 +112,17 @@ function ScannerModal({ onClose, onScanSuccess }) {
             <video ref={videoRef} autoPlay playsInline muted style={styles.video} />
           )}
           {status === 'starting' && (
-            <div style={styles.placeholder}>Включаем камеру…</div>
+            <div style={styles.placeholder}>{t(locale, 'main.camera')}</div>
           )}
           {status === 'denied' && (
             <div style={styles.placeholder}>
-              Нет доступа к камере.<br />Разрешите доступ в настройках браузера.
+              {t(locale, 'main.denied')}
             </div>
           )}
           {status === 'success' && (
             <div style={styles.successBox}>
               <div style={styles.successIcon}>✓</div>
-              <div>Ячейка открыта, приятного чтения!</div>
+              <div>{t(locale, 'main.success')}</div>
             </div>
           )}
 
@@ -116,7 +136,7 @@ function ScannerModal({ onClose, onScanSuccess }) {
           )}
         </div>
 
-        <div style={styles.hint}>Наведите камеру на QR-код на корпусе аппарата</div>
+        <div style={styles.hint}>{t(locale, 'main.qrHint')}</div>
 
         {status === 'live' && (
           <motion.button
@@ -124,7 +144,7 @@ function ScannerModal({ onClose, onScanSuccess }) {
             onClick={simulateScan}
             whileTap={{ scale: 0.97 }}
           >
-            Демо: имитировать сканирование
+            {t(locale, 'main.simulate')}
           </motion.button>
         )}
       </motion.div>
@@ -165,5 +185,6 @@ const styles = {
   successBox: { color: '#fff', textAlign: 'center', fontSize: 14, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 10 },
   successIcon: { width: 44, height: 44, borderRadius: '50%', background: 'var(--green)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 22 },
   hint: { fontSize: 12, color: 'var(--muted)', textAlign: 'center', marginTop: 14 },
+  retryBtn: { marginTop: 12, background: 'rgba(255,255,255,0.14)', border: '1px solid rgba(255,255,255,0.28)', color: '#fff', padding: '10px 14px', borderRadius: '999px', fontSize: 13, cursor: 'pointer' },
   primaryBtn: { width: '100%', background: 'var(--green)', color: '#fff', border: 'none', borderRadius: 'var(--radius-sm)', padding: 13, fontWeight: 700, fontSize: 14, marginTop: 14 },
 };
