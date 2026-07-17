@@ -33,7 +33,7 @@
   "machines": [
     {
       "id": "IQRO-001",
-      "name": "IQRO NI · Automат №1",
+      "name": "IQRO NI · Avtomat №1",
       "address": "INNO Technopark, Qamarniso ko'chasi 8/1, Olmazor tumani, Toshkent",
       "plusCode": "9643+FPG",
       "lat": 41.3336,
@@ -41,7 +41,7 @@
       "status": "online",
       "books": [
         {
-          "title": "O'tkan kunlar ",
+          "title": "O'tkan kunlar",
           "author": "Abdulla Qodiriy"
         },
         {
@@ -49,14 +49,14 @@
           "author": "Pirimqul Qodirov"
         },
         {
-          "title": "Shum bola",
-          "author": "G'afur G'ulom"
+          "title": "Kecha va kunduz",
+          "author": "Abdulhamid Cho'lpon"
         }
       ]
     },
     {
       "id": "IQRO-002",
-      "name": "IQRO NI · Automат №2",
+      "name": "IQRO NI · Avtomat №2",
       "address": "Adiblar xiyoboni, Almazar Gallery, Bunyodkor Avenue, Tashkent, Uzbekistan",
       "plusCode": "9643+FPG",
       "lat": 41.3157,
@@ -68,18 +68,18 @@
           "author": "Said Ahmad"
         },
         {
-          "title": "Alkimyogar",
-          "author": "Paulo Koelyo"
+          "title": "Atom odatlar",
+          "author": "James Clear"
         },
         {
           "title": "Kichkina shahzoda",
-          "author": "Antuan de Sent-Ekzyuperi"
+          "author": "Antoine de Saint-Exupéry"
         }
       ]
     },
     {
       "id": "IQRO-003",
-      "name": "IQRO NI · Automат №3",
+      "name": "IQRO NI · Avtomat №3",
       "address": "Mirzo Ulug'bek Recreation Park, Khamidulla Oripov St 21, Tashkent, Uzbekistan",
       "plusCode": "9643+FPG",
       "lat": 41.3306,
@@ -91,8 +91,8 @@
           "author": "Abdulla Qodiriy"
         },
         {
-          "title": "Shantaram",
-          "author": "Gregori Devid Roberts"
+          "title": "Qo'rqma",
+          "author": "Javlon Jovliyev"
         },
         {
           "title": "Dune",
@@ -102,7 +102,7 @@
     },
     {
       "id": "IQRO-004",
-      "name": "IQRO NI · Automат №4",
+      "name": "IQRO NI · Avtomat №4",
       "address": "Anhor Lokomotiv, Shaykhontohur Street 28, Tashkent, Uzbekistan",
       "plusCode": "9643+FPG",
       "lat": 41.3089,
@@ -114,18 +114,18 @@
           "author": "O'tkir Hoshimov"
         },
         {
-          "title": "Yor-yor",
+          "title": "Sariq devni minib",
           "author": "Xudoyberdi To'xtaboyev"
         },
         {
-          "title": "Momoqaymoq",
-          "author": "Murod Muhammad Do'st"
+          "title": "Shum bola",
+          "author": "G'afur G'ulom"
         }
       ]
     },
     {
       "id": "IQRO-005",
-      "name": "IQRO NI · Automат №5",
+      "name": "IQRO NI · Avtomat №5",
       "address": "Eco Park Tashkent, 877P+36R, Tashkent, Uzbekistan",
       "plusCode": "877P+36R",
       "lat": 41.3236,
@@ -133,22 +133,22 @@
       "status": "online",
       "books": [
         {
-          "title": "Qora ko'chalar",
-          "author": "Said Ahmad"
+          "title": "Dunyoning ishlari",
+          "author": "O'tkir Hoshimov"
         },
         {
-          "title": "Kaftar",
-          "author": "Abdulla Qodiriy"
+          "title": "Bizdan rozi bo'ling, ota",
+          "author": "Ulug'bek Hamdam"
         },
         {
-          "title": "Maqsad",
-          "author": "Asqad Muxtor"
+          "title": "1984",
+          "author": "George Orwell"
         }
       ]
     },
     {
       "id": "IQRO-006",
-      "name": "IQRO NI · Automат №6",
+      "name": "IQRO NI · Avtomat №6",
       "address": "Botanika, 88V6+RCX Tashkent, Uzbekistan",
       "plusCode": "88V6+RCX",
       "lat": 41.3168,
@@ -156,16 +156,16 @@
       "status": "online",
       "books": [
         {
-          "title": "Odam bo'lib tug'ilish",
+          "title": "Tushda kechgan umrlar",
           "author": "O'tkir Hoshimov"
         },
         {
-          "title": "Qoratosh",
-          "author": "Rasul Gamzatov"
+          "title": "Farengeyt bo'yicha 451 daraja",
+          "author": "Ray Bradbury"
         },
         {
-          "title": "Ruhlar isyoni",
-          "author": "A. B. C"
+          "title": "Chalg'ituvchi dunyoda muvaffaqiyat sirlari",
+          "author": "Cal Newport"
         }
       ]
     }
