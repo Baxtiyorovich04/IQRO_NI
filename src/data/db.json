@@ -10,17 +10,171 @@
   "machine": {
     "id": "IQRO-001",
     "name": "IQRO NI · Automат №1",
-    "address": "INNO Technopark, Kamarniso ko'chasi 8/1, Olmazor tumani, Toshkent",
+    "address": "INNO Technopark, Qamarniso ko'chasi 8/1, Olmazor tumani, Toshkent",
     "plusCode": "9643+FPG",
     "lat": 41.3336,
     "lon": 69.2168,
-    "status": "online"
+    "status": "online",
+    "books": [
+      {
+        "title": "O'tkan kunlar",
+        "author": "Abdulla Qodiriy"
+      },
+      {
+        "title": "Yulduzli tunlar",
+        "author": "Pirimqul Qodirov"
+      },
+      {
+        "title": "Shum bola",
+        "author": "G'afur G'ulom"
+      }
+    ]
   },
+  "machines": [
+    {
+      "id": "IQRO-001",
+      "name": "IQRO NI · Automат №1",
+      "address": "INNO Technopark, Qamarniso ko'chasi 8/1, Olmazor tumani, Toshkent",
+      "plusCode": "9643+FPG",
+      "lat": 41.3336,
+      "lon": 69.2168,
+      "status": "online",
+      "books": [
+        {
+          "title": "O'tkan kunlar",
+          "author": "Abdulla Qodiriy"
+        },
+        {
+          "title": "Yulduzli tunlar",
+          "author": "Pirimqul Qodirov"
+        },
+        {
+          "title": "Shum bola",
+          "author": "G'afur G'ulom"
+        }
+      ]
+    },
+    {
+      "id": "IQRO-002",
+      "name": "IQRO NI · Automат №2",
+      "address": "Adiblar xiyoboni, Almazar Gallery, Bunyodkor Avenue, Tashkent, Uzbekistan",
+      "plusCode": "9643+FPG",
+      "lat": 41.3157,
+      "lon": 69.2414,
+      "status": "online",
+      "books": [
+        {
+          "title": "Ufq",
+          "author": "Said Ahmad"
+        },
+        {
+          "title": "Alkimyogar",
+          "author": "Paulo Koelyo"
+        },
+        {
+          "title": "Kichkina shahzoda",
+          "author": "Antuan de Sent-Ekzyuperi"
+        }
+      ]
+    },
+    {
+      "id": "IQRO-003",
+      "name": "IQRO NI · Automат №3",
+      "address": "Mirzo Ulug'bek Recreation Park, Khamidulla Oripov St 21, Tashkent, Uzbekistan",
+      "plusCode": "9643+FPG",
+      "lat": 41.3306,
+      "lon": 69.2998,
+      "status": "online",
+      "books": [
+        {
+          "title": "Mehrobdan chayon",
+          "author": "Abdulla Qodiriy"
+        },
+        {
+          "title": "Shantaram",
+          "author": "Gregori Devid Roberts"
+        },
+        {
+          "title": "Dune",
+          "author": "Frank Herbert"
+        }
+      ]
+    },
+    {
+      "id": "IQRO-004",
+      "name": "IQRO NI · Automат №4",
+      "address": "Anhor Lokomotiv, Shaykhontohur Street 28, Tashkent, Uzbekistan",
+      "plusCode": "9643+FPG",
+      "lat": 41.3089,
+      "lon": 69.262,
+      "status": "online",
+      "books": [
+        {
+          "title": "Ikki eshik orasi",
+          "author": "O'tkir Hoshimov"
+        },
+        {
+          "title": "Yor-yor",
+          "author": "Xudoyberdi To'xtaboyev"
+        },
+        {
+          "title": "Momoqaymoq",
+          "author": "Murod Muhammad Do'st"
+        }
+      ]
+    },
+    {
+      "id": "IQRO-005",
+      "name": "IQRO NI · Automат №5",
+      "address": "Eco Park Tashkent, 877P+36R, Tashkent, Uzbekistan",
+      "plusCode": "877P+36R",
+      "lat": 41.3236,
+      "lon": 69.2735,
+      "status": "online",
+      "books": [
+        {
+          "title": "Qora ko'chalar",
+          "author": "Said Ahmad"
+        },
+        {
+          "title": "Kaftar",
+          "author": "Abdulla Qodiriy"
+        },
+        {
+          "title": "Maqsad",
+          "author": "Asqad Muxtor"
+        }
+      ]
+    },
+    {
+      "id": "IQRO-006",
+      "name": "IQRO NI · Automат №6",
+      "address": "Botanika, 88V6+RCX Tashkent, Uzbekistan",
+      "plusCode": "88V6+RCX",
+      "lat": 41.3168,
+      "lon": 69.2845,
+      "status": "online",
+      "books": [
+        {
+          "title": "Odam bo'lib tug'ilish",
+          "author": "O'tkir Hoshimov"
+        },
+        {
+          "title": "Qoratosh",
+          "author": "Rasul Gamzatov"
+        },
+        {
+          "title": "Ruhlar isyoni",
+          "author": "A. B. C"
+        }
+      ]
+    }
+  ],
   "rentals": [
     {
       "id": 1,
-      "title": "Дюна",
-      "author": "Фрэнк Герберт",
+      "title": "O'tkan kunlar",
+      "author": "Abdulla Qodiriy",
       "takenAt": "2026-07-02T10:15:00",
       "location": "IQRO NI · Automат №1, INNO Technopark",
       "dueAt": "2026-07-16T10:15:00",
@@ -28,8 +182,8 @@
     },
     {
       "id": 2,
-      "title": "Сапиенс",
-      "author": "Юваль Ной Харари",
+      "title": "Yulduzli tunlar",
+      "author": "Pirimqul Qodirov",
       "takenAt": "2026-07-08T18:40:00",
       "location": "IQRO NI · Automат №1, INNO Technopark",
       "dueAt": "2026-07-22T18:40:00",
@@ -37,10 +191,55 @@
     },
     {
       "id": 3,
-      "title": "1984",
-      "author": "Джордж Оруэлл",
+      "title": "Shum bola",
+      "author": "G'afur G'ulom",
       "takenAt": "2026-06-10T09:00:00",
       "returnedAt": "2026-06-24T14:20:00",
+      "location": "IQRO NI · Automат №1, INNO Technopark",
+      "status": "returned"
+    },
+    {
+      "id": 4,
+      "title": "Ufq",
+      "author": "Said Ahmad",
+      "takenAt": "2026-07-12T09:30:00",
+      "location": "IQRO NI · Automат №1, INNO Technopark",
+      "dueAt": "2026-07-26T09:30:00",
+      "status": "active"
+    },
+    {
+      "id": 5,
+      "title": "Mehrobdan chayon",
+      "author": "Abdulla Qodiriy",
+      "takenAt": "2026-06-20T11:00:00",
+      "returnedAt": "2026-07-04T10:15:00",
+      "location": "IQRO NI · Automат №1, INNO Technopark",
+      "status": "returned"
+    },
+    {
+      "id": 6,
+      "title": "Alkimyogar",
+      "author": "Paulo Koelyo",
+      "takenAt": "2026-07-15T14:20:00",
+      "location": "IQRO NI · Automат №1, INNO Technopark",
+      "dueAt": "2026-07-29T14:20:00",
+      "status": "active"
+    },
+    {
+      "id": 7,
+      "title": "Kichkina shahzoda",
+      "author": "Antuan de Sent-Ekzyuperi",
+      "takenAt": "2026-07-16T16:45:00",
+      "location": "IQRO NI · Automат №1, INNO Technopark",
+      "dueAt": "2026-07-30T16:45:00",
+      "status": "active"
+    },
+    {
+      "id": 8,
+      "title": "Shantaram",
+      "author": "Gregori Devid Roberts",
+      "takenAt": "2026-06-05T09:00:00",
+      "returnedAt": "2026-06-19T14:30:00",
       "location": "IQRO NI · Automат №1, INNO Technopark",
       "status": "returned"
     }

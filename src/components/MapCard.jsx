@@ -17,13 +17,16 @@ const pulseIcon = L.divIcon({
   iconAnchor: [11, 11],
 });
 
-export default function MapCard({ machine, locale }) {
-  const { lat, lon } = machine;
+export default function MapCard({ machines = [], locale }) {
   const isDarkMode = document.documentElement.dataset.theme === 'dark';
   const tileUrl = isDarkMode
     ? 'https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png'
-    : 'https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png';
-  const bigMapUrl = `https://www.openstreetmap.org/?mlat=${lat}&mlon=${lon}#map=17/${lat}/${lon}`;
+    : 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
+
+  const center = machines[0] ? [machines[0].lat, machines[0].lon] : [41.315, 69.27];
+  const bounds = machines.length > 1
+    ? L.latLngBounds(machines.map((machine) => [machine.lat, machine.lon]))
+    : undefined;
 
   return (
     <motion.div
@@ -33,10 +36,12 @@ export default function MapCard({ machine, locale }) {
     >
       <div style={styles.mapWrap}>
         <MapContainer
-          center={[lat, lon]}
-          zoom={15.5}
+          center={center}
+          bounds={bounds}
+          boundsOptions={{ padding: [8, 8] }}
+          zoom={12}
           scrollWheelZoom={false}
-          dragging={false}
+          dragging={true}
           zoomControl={false}
           doubleClickZoom={false}
           touchZoom={false}
@@ -44,21 +49,34 @@ export default function MapCard({ machine, locale }) {
           style={styles.map}
         >
           <TileLayer
-            attribution='&copy; OpenStreetMap &copy; CARTO'
+            attribution='&copy; OpenStreetMap contributors &copy; CARTO'
             url={tileUrl}
             subdomains={['a', 'b', 'c', 'd']}
           />
-          <Marker position={[lat, lon]} icon={pulseIcon}>
-            <Popup>{machine.name}</Popup>
-          </Marker>
+          {machines.map((machine) => (
+            <Marker key={machine.id} position={[machine.lat, machine.lon]} icon={pulseIcon}>
+              <Popup>
+                <div style={styles.popup}>
+                  <div style={styles.popupTitle}>{machine.name}</div>
+                  <div style={styles.popupAddress}>{machine.address}</div>
+                  <div style={styles.popupBooksTitle}>{t(locale, 'main.availableBooks')}</div>
+                  <ul style={styles.popupList}>
+                    {machine.books.map((book) => (
+                      <li key={`${machine.id}-${book.title}`} style={styles.popupItem}>
+                        <span style={styles.popupBookTitle}>{book.title}</span>
+                        <span style={styles.popupBookAuthor}>{book.author}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </Popup>
+            </Marker>
+          ))}
         </MapContainer>
-        <a href={bigMapUrl} target="_blank" rel="noreferrer" style={styles.openBtn}>
-          {t(locale, 'main.openMap')}
-        </a>
       </div>
       <div style={styles.label}>
         <div style={styles.dot} />
-        <span>{machine.name}</span>
+        <span>{machines.length} {t(locale, 'main.machineCount')}</span>
       </div>
 
       <style>{`
@@ -77,13 +95,16 @@ const styles = {
     border: '1px solid var(--green-border)', textDecoration: 'none', color: 'var(--ink)',
     background: 'var(--surface)', boxShadow: '0 1px 2px rgba(0,0,0,0.12)',
   },
-  mapWrap: { position: 'relative', height: 128, background: 'var(--green-tint)' },
+  mapWrap: { position: 'relative', height: 164, background: 'var(--green-tint)' },
   map: { width: '100%', height: '100%', zIndex: 0 },
-  openBtn: {
-    position: 'absolute', bottom: 8, right: 8, background: 'var(--surface)',
-    color: 'var(--green-dark)', fontSize: 10, fontWeight: 700, padding: '4px 8px',
-    borderRadius: 20, textDecoration: 'none', boxShadow: '0 1px 4px rgba(0,0,0,0.12)', zIndex: 1,
-  },
+  popup: { minWidth: 180, display: 'flex', flexDirection: 'column', gap: 6 },
+  popupTitle: { fontSize: 13, fontWeight: 700, color: 'var(--ink)' },
+  popupAddress: { fontSize: 11, color: 'var(--muted)' },
+  popupBooksTitle: { fontSize: 11, fontWeight: 700, color: 'var(--green-dark)', marginTop: 4 },
+  popupList: { margin: 0, paddingLeft: 14, display: 'flex', flexDirection: 'column', gap: 4 },
+  popupItem: { display: 'flex', flexDirection: 'column', gap: 2 },
+  popupBookTitle: { fontSize: 12, fontWeight: 600, color: 'var(--ink)' },
+  popupBookAuthor: { fontSize: 11, color: 'var(--muted)' },
   label: { display: 'flex', alignItems: 'center', gap: 6, padding: '10px 12px', fontSize: 12, fontWeight: 600 },
   dot: { width: 7, height: 7, borderRadius: '50%', background: 'var(--green)' },
 };

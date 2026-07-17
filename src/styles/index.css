@@ -112,9 +112,27 @@ button:active {
 
 .leaflet-container {
   font-family: var(--font-body) !important;
+  background: var(--surface-soft) !important;
+}
+
+.leaflet-popup-content-wrapper,
+.leaflet-popup-tip {
+  background: var(--surface) !important;
+  color: var(--ink) !important;
+  box-shadow: 0 3px 14px rgba(0, 0, 0, 0.24) !important;
+}
+
+.leaflet-container a.leaflet-popup-close-button {
+  color: var(--muted) !important;
 }
 
 .leaflet-control-attribution {
   font-size: 9px !important;
-  background: rgba(255, 255, 255, 0.75) !important;
+  background: rgba(255, 255, 255, 0.8) !important;
+  color: var(--ink) !important;
+}
+
+[data-theme='dark'] .leaflet-control-attribution {
+  background: rgba(15, 25, 20, 0.9) !important;
+  color: var(--muted) !important;
 }

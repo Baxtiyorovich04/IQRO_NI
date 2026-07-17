@@ -7,7 +7,6 @@ import MapCard from '../components/MapCard.jsx';
 import ScanCard from '../components/ScanCard.jsx';
 import Faq from '../components/Faq.jsx';
 import Contacts from '../components/Contacts.jsx';
-
 import { t } from '../i18n.js';
 
 const container = {
@@ -32,7 +31,7 @@ export default function Main({ profile, locale, onLogout }) {
 
   const handleScanSuccess = () => {
     setToast(t(locale, 'main.toastRentSuccess'));
-    setTimeout(() => setToast(null), 3000);
+    window.setTimeout(() => setToast(null), 3000);
   };
 
   return (
@@ -47,7 +46,7 @@ export default function Main({ profile, locale, onLogout }) {
       </motion.div>
 
       <motion.div variants={item} style={styles.grid}>
-        <MapCard machine={db.machine} locale={locale} style={styles.mapCard} />
+        <MapCard machines={db.machines} locale={locale} style={styles.mapCard} />
         <ScanCard onScanSuccess={handleScanSuccess} locale={locale} />
       </motion.div>
 
@@ -56,7 +55,7 @@ export default function Main({ profile, locale, onLogout }) {
       </motion.div>
 
       <motion.div variants={item} style={styles.section}>
-        <Contacts contacts={db.contacts} machine={db.machine} locale={locale} />
+        <Contacts contacts={db.contacts} machine={db.machines[0]} locale={locale} />
       </motion.div>
 
       <AnimatePresence>
@@ -91,7 +90,7 @@ const styles = {
   section: { padding: '0 20px' },
   toast: {
     position: 'fixed', bottom: 20, left: '50%',
-    background: 'var(--ink)', color: '#fff', padding: '12px 18px', borderRadius: 12,
+    background: 'var(--surface)', color: 'var(--ink)', padding: '12px 18px', borderRadius: 12,
     fontSize: 13, boxShadow: '0 8px 24px rgba(0,0,0,0.2)', zIndex: 70, maxWidth: '90%', textAlign: 'center',
   },
 };

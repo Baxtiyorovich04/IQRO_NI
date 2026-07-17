@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
-import { MdDashboard, MdSettings, MdAccountBalanceWallet, MdMenu, MdLogout } from 'react-icons/md';
+import { MdDashboard, MdSettings, MdAccountBalanceWallet, MdMenu, MdLogout, MdRecommend } from 'react-icons/md';
 import Splash from './screens/Splash.jsx';
 import Auth from './screens/Auth.jsx';
 import Profile from './screens/Profile.jsx';
 import Main from './screens/Main.jsx';
 import Balance from './screens/Balance.jsx';
 import Settings from './screens/Settings.jsx';
+import Suggestion from './screens/Suggestion.jsx';
+import db from './data/db.json';
 import { t, defaultLocale, localeLabels, colorModes } from './i18n.js';
 
 const SESSION_KEY = 'iqroni_session';
@@ -32,6 +34,7 @@ export default function App() {
   const pageItems = [
     { key: 'dashboard', icon: <MdDashboard size={20} />, label: t(locale, 'sidebar.dashboard') },
     { key: 'balance', icon: <MdAccountBalanceWallet size={20} />, label: t(locale, 'sidebar.balance') },
+    { key: 'suggestion', icon: <MdRecommend size={20} />, label: t(locale, 'sidebar.suggestion') },
     { key: 'settings', icon: <MdSettings size={20} />, label: t(locale, 'sidebar.settings') },
   ];
 
@@ -192,6 +195,7 @@ export default function App() {
                 <div style={styles.pageArea}>
                   {page === 'dashboard' && <Main profile={profile} locale={locale} />}
                   {page === 'balance' && <Balance locale={locale} />}
+                  {page === 'suggestion' && <Suggestion machines={db.machines} locale={locale} />}
                   {page === 'settings' && (
                     <Settings
                       locale={locale}
