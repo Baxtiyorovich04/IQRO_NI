@@ -52,7 +52,7 @@ const styles = {
     subtitle: { fontSize: 14, color: 'var(--muted)', margin: 0 },
     card: {
         marginTop: 20, background: 'var(--surface)', border: '1px solid var(--green-border)', borderRadius: 'var(--radius-md)', padding: 18,
-        display: 'flex', flexDirection: 'column', gap: 12,
+        display: 'flex', flexDirection: 'column', gap: 12.5,
     },
     row: { display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: 12, fontSize: 14 },
     label: { fontSize: 12, color: 'var(--muted)' },
